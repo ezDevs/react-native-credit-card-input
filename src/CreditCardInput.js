@@ -94,12 +94,6 @@ export default class CreditCardInput extends Component {
     additionalInputsProps: {},
   };
 
-  componentDidMount = () => this._focus(this.props.focused);
-
-  componentWillReceiveProps = newProps => {
-    if (this.props.focused !== newProps.focused) this._focus(newProps.focused);
-  };
-
   _inputProps = field => {
     const {
       inputStyle, labelStyle, validColor, invalidColor, placeholderColor,
@@ -135,7 +129,7 @@ export default class CreditCardInput extends Component {
 
     return (
       <View style={s.container}>
-        <CreditCard focused={focused}
+        <CreditCard
           brand={type}
           scale={cardScale}
           fontFamily={cardFontFamily}
