@@ -100,20 +100,6 @@ export default class CreditCardInput extends Component {
     if (this.props.focused !== newProps.focused) this._focus(newProps.focused);
   };
 
-  _focus = field => {
-    if (!field) return;
-
-    const scrollResponder = this.refs.Form.getScrollResponder();
-    const nodeHandle = ReactNative.findNodeHandle(this.refs[field]);
-
-    NativeModules.UIManager.measureLayoutRelativeToParent(nodeHandle,
-      e => { throw e; },
-      x => {
-        scrollResponder.scrollTo({ x: Math.max(x - PREVIOUS_FIELD_OFFSET, 0), animated: true });
-        this.refs[field].focus();
-      });
-  }
-
   _inputProps = field => {
     const {
       inputStyle, labelStyle, validColor, invalidColor, placeholderColor,
@@ -133,7 +119,7 @@ export default class CreditCardInput extends Component {
       value: values[field],
       status: status[field],
 
-      onFocus, onChange, onBecomeEmpty, onBecomeValid,
+      onChange, onBecomeEmpty, onBecomeValid,
 
       additionalInputProps: additionalInputsProps[field],
     };
@@ -160,12 +146,7 @@ export default class CreditCardInput extends Component {
           number={number}
           expiry={expiry}
           cvc={cvc} />
-        <ScrollView ref="Form"
-          horizontal
-          keyboardShouldPersistTaps="always"
-          scrollEnabled={allowScroll}
-          showsHorizontalScrollIndicator={false}
-          style={s.form}>
+        <View>
           <CCInput {...this._inputProps("number")}
             keyboardType="numeric"
             containerStyle={[s.inputContainer, inputContainerStyle, { width: CARD_NUMBER_INPUT_WIDTH }]} />
@@ -183,7 +164,7 @@ export default class CreditCardInput extends Component {
             <CCInput {...this._inputProps("postalCode")}
               keyboardType="numeric"
               containerStyle={[s.inputContainer, inputContainerStyle, { width: POSTAL_CODE_INPUT_WIDTH }]} /> }
-        </ScrollView>
+        </View>
       </View>
     );
   }
