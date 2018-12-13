@@ -17,7 +17,6 @@ import { InjectedProps } from "./connectToState";
 
 const s = StyleSheet.create({
   container: {
-    flex: 1,
     alignItems: "center",
   },
   form: {
@@ -44,11 +43,6 @@ const POSTAL_CODE_INPUT_WIDTH = 120;
 
 /* eslint react/prop-types: 0 */ // https://github.com/yannickcr/eslint-plugin-react/issues/106
 export default class CreditCardInput extends Component {
-  constructor(props) {
-    super(props);
-    alert();
-  }
-
   static propTypes = {
     ...InjectedProps,
     labels: PropTypes.object,
@@ -133,6 +127,8 @@ export default class CreditCardInput extends Component {
       cardScale, cardFontFamily, cardBrandIcons,
     } = this.props;
 
+    const width = Dimensions.get('screen').width - 40;
+
     return (
       <View style={s.container}>
         <CreditCard
@@ -146,24 +142,24 @@ export default class CreditCardInput extends Component {
           number={number}
           expiry={expiry}
           cvc={cvc} />
-        <View style={{ alignItems: 'flex-start', alignSelf: 'flex-start', marginTop: 20, justifyContent: 'space-between' }}>
+        <View style={{ alignItems: 'flex-start', alignSelf: 'flex-start', width: '100%', marginTop: 10 }}>
           <CCInput {...this._inputProps("number")}
             keyboardType="numeric"
-            containerStyle={[s.inputContainer, inputContainerStyle, { flex: 1, marginTop: 5 }]} />
+            containerStyle={[s.inputContainer, inputContainerStyle, { width, marginTop: 10 }]} />
           <CCInput {...this._inputProps("expiry")}
             keyboardType="numeric"
-            containerStyle={[s.inputContainer, inputContainerStyle, { flex: 1, marginTop: 5 }]} />
-          { requiresCVC &&
+            containerStyle={[s.inputContainer, inputContainerStyle, { width, marginTop: 10 }]} />
+          {requiresCVC &&
             <CCInput {...this._inputProps("cvc")}
               keyboardType="numeric"
-              containerStyle={[s.inputContainer, inputContainerStyle, { flex: 1, marginTop: 5 }]} /> }
-          { requiresName &&
+              containerStyle={[s.inputContainer, inputContainerStyle, { width, marginTop: 10 }]} />}
+          {requiresName &&
             <CCInput {...this._inputProps("name")}
-              containerStyle={[s.inputContainer, inputContainerStyle, { flex: 1, marginTop: 5 }]} /> }
-          { requiresPostalCode &&
+              containerStyle={[s.inputContainer, inputContainerStyle, { width, marginTop: 10 }]} />}
+          {requiresPostalCode &&
             <CCInput {...this._inputProps("postalCode")}
               keyboardType="numeric"
-              containerStyle={[s.inputContainer, inputContainerStyle, { flex: 1, marginTop: 5 }]} /> }
+              containerStyle={[s.inputContainer, inputContainerStyle, { width, marginTop: 10 }]} />}
         </View>
       </View>
     );
