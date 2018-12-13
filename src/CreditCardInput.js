@@ -17,6 +17,7 @@ import { InjectedProps } from "./connectToState";
 
 const s = StyleSheet.create({
   container: {
+    flex: 1,
     alignItems: "center",
   },
   form: {
@@ -43,6 +44,11 @@ const POSTAL_CODE_INPUT_WIDTH = 120;
 
 /* eslint react/prop-types: 0 */ // https://github.com/yannickcr/eslint-plugin-react/issues/106
 export default class CreditCardInput extends Component {
+  constructor(props) {
+    super(props);
+    alert();
+  }
+
   static propTypes = {
     ...InjectedProps,
     labels: PropTypes.object,
@@ -104,7 +110,7 @@ export default class CreditCardInput extends Component {
 
     return {
       inputStyle: [s.input, inputStyle],
-      labelStyle: [s.inputLabel, labelStyle, { color: '#4A4A4A', marginBottom: 3, }],
+      labelStyle: [s.inputLabel, labelStyle],
       validColor, invalidColor, placeholderColor,
       ref: field, field,
 
@@ -140,7 +146,7 @@ export default class CreditCardInput extends Component {
           number={number}
           expiry={expiry}
           cvc={cvc} />
-        <View style={{ alignItems: 'flex-start', alignSelf: 'flex-start' }}>
+        <View style={{ alignItems: 'flex-start', alignSelf: 'flex-start', marginTop: 20, justifyContent: 'space-between' }}>
           <CCInput {...this._inputProps("number")}
             keyboardType="numeric"
             containerStyle={[s.inputContainer, inputContainerStyle, { flex: 1, marginTop: 5 }]} />
