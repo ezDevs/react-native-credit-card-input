@@ -104,7 +104,7 @@ export default class CreditCardInput extends Component {
 
     return {
       inputStyle: [s.input, inputStyle],
-      labelStyle: [s.inputLabel, labelStyle],
+      labelStyle: [s.inputLabel, labelStyle, { color: '#4A4A4A', marginBottom: 3, }],
       validColor, invalidColor, placeholderColor,
       ref: field, field,
 
@@ -143,21 +143,21 @@ export default class CreditCardInput extends Component {
         <View style={{ alignItems: 'flex-start', alignSelf: 'flex-start' }}>
           <CCInput {...this._inputProps("number")}
             keyboardType="numeric"
-            containerStyle={[s.inputContainer, inputContainerStyle, { flex: 1 }]} />
+            containerStyle={[s.inputContainer, inputContainerStyle, { flex: 1, marginTop: 5 }]} />
           <CCInput {...this._inputProps("expiry")}
             keyboardType="numeric"
-            containerStyle={[s.inputContainer, inputContainerStyle, { flex: 1 }]} />
+            containerStyle={[s.inputContainer, inputContainerStyle, { flex: 1, marginTop: 5 }]} />
           { requiresCVC &&
             <CCInput {...this._inputProps("cvc")}
               keyboardType="numeric"
-              containerStyle={[s.inputContainer, inputContainerStyle, { flex: 1 }]} /> }
+              containerStyle={[s.inputContainer, inputContainerStyle, { flex: 1, marginTop: 5 }]} /> }
           { requiresName &&
             <CCInput {...this._inputProps("name")}
-              containerStyle={[s.inputContainer, inputContainerStyle, { flex: 1 }]} /> }
+              containerStyle={[s.inputContainer, inputContainerStyle, { flex: 1, marginTop: 5 }]} /> }
           { requiresPostalCode &&
             <CCInput {...this._inputProps("postalCode")}
               keyboardType="numeric"
-              containerStyle={[s.inputContainer, inputContainerStyle, { flex: 1 }]} /> }
+              containerStyle={[s.inputContainer, inputContainerStyle, { flex: 1, marginTop: 5 }]} /> }
         </View>
       </View>
     );
